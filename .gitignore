@@ -1,5 +1,9 @@
 # Byte-compiled
 **__pycache__/
 
-# pycharm data
+# Pycharm data
 .idea/
+
+
+# Redis
+redis/
