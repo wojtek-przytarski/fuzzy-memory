@@ -7,13 +7,17 @@ services:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+    networks:
+      - scnetwork
 
   redis:
     env_file:
       - .env
     image: redis:5.0.4-stretch
     volumes:
-      - "./redis:/data"
+      - ./redis:/data
+    networks:
+      - scnetwork
 
   web:
     image: fuzzy-memory:latest
@@ -26,12 +30,14 @@ services:
     env_file:
       - .env
     ports:
-      - "8000:8000"
+      - 8000:8000
     depends_on:
       - db
       - redis
     links:
       - redis
+    networks:
+      - scnetwork
 
   worker:
     image: fuzzy-memory:latest
@@ -48,3 +54,23 @@ services:
       - redis
     links:
       - redis
+    networks:
+      - scnetwork
+
+  frontend:
+    image: fuzzy-memory-frontend:latest
+    build:
+      context: .
+      dockerfile: dockers/frontend/Dockerfile
+    volumes:
+      - ./frontend/second-tetration:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    ports:
+      - 8080:8080
+    networks:
+      - scnetwork
+
+networks:
+  scnetwork: {}

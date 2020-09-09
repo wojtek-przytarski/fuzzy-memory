@@ -4,6 +4,16 @@
 # Pycharm data
 .idea/
 
-
 # Redis
 redis/
+
+frontend/second-tetration/.DS_Store
+frontend/second-tetration/node_modules
+frontend/second-tetration//dist
+
+
+# Log files
+frontend/second-tetration/npm-debug.log*
+frontend/second-tetration/yarn-debug.log*
+frontend/second-tetration/yarn-error.log*
+frontend/second-tetration/pnpm-debug.log*

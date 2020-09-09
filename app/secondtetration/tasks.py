@@ -17,5 +17,4 @@ def calculate_second_tetration(number: int) -> FractionResult:
 
 
 def second_tetration(number: int) -> int:
-    print(f"Called for {number}")
     return number ** number
